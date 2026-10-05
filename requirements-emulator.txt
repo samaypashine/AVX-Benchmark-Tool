@@ -1,0 +1,7 @@
+# VX3 NDI camera emulator -- Python packages for the SECOND (sender) PC
+# Install:  python -m pip install -r requirements-emulator.txt
+# Python 3.10 or newer, 64-bit. The NDI Runtime must also be installed
+# (https://ndi.video/tools/ -> "NDI Tools" or "NDI Runtime").
+numpy>=1.24                 # test-pattern generation
+cyndilib                    # NDI sender (Python bindings for the NDI SDK)
+psutil>=5.9                 # live network-TX readout (optional but recommended)

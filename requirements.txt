@@ -1,0 +1,30 @@
+# VX3 Benchmark -- Python packages for the BENCHMARK PC
+# Install:  python -m pip install -r requirements.txt
+# Python 3.10 or newer (3.12 / 3.13 recommended), 64-bit.
+#
+# Non-Python software is also required (OBS Studio + DistroAV + NDI Runtime,
+# and for GPU inference the NVIDIA driver/CUDA/cuDNN) -- see README.md.
+
+# --- Core (always needed) -----------------------------------------------------
+numpy>=1.24                 # frame/tensor buffers, statistics
+psutil>=5.9                 # CPU / RAM / disk / network / process telemetry
+
+# --- AI inference (ONNX Runtime) ----------------------------------------------
+# Install EXACTLY ONE of the two lines below (they conflict with each other).
+# GPU (NVIDIA CUDA 12.x + cuDNN 9.x; also provides TensorRT when installed):
+onnxruntime-gpu>=1.19
+# CPU-only machines: comment out the line above and use this one instead:
+# onnxruntime>=1.19
+
+# --- Reports ------------------------------------------------------------------
+reportlab>=4.0              # PDF report (vector charts)
+pypdf>=4.0                  # PDF layers + embedded attachments
+
+# --- Encode test, synthetic streams, image persistence ------------------------
+imageio-ffmpeg>=0.5         # bundled FFmpeg (fallback if no ffmpeg on PATH / VX3_FFMPEG)
+opencv-python>=4.8          # fast JPEG/PNG/WebP encoding for image persistence
+Pillow>=10.0                # fallback image encoder if OpenCV is unavailable
+
+# --- Optional -----------------------------------------------------------------
+nvidia-ml-py>=12.535        # NVIDIA GPU telemetry (utilisation, VRAM, temperature, power,
+                            # clocks, PCIe, NVENC/NVDEC). Harmless on machines without NVIDIA.

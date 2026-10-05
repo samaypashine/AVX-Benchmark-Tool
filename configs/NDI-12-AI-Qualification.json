@@ -1,0 +1,97 @@
+{
+  "name": "NDI 12-Stream AI Qualification",
+  "description": "Measures NDI receive FPS while three independent ONNX model threads repeatedly infer on fixed images.",
+  "session": {
+    "duration": {
+      "value": 3,
+      "unit": "minutes"
+    }
+  },
+  "inputs": [
+    {
+      "id": "ndi-set",
+      "transport": "ndi",
+      "enabled": true,
+      "stream_count": 12,
+      "discovery_timeout_seconds": 30,
+      "hardware_acceleration": true,
+      "source_filter": "",
+      "bandwidth": "highest",
+      "obs_path": "",
+      "websocket_port": 4455,
+      "minimize": true,
+      "arrange_grid": true,
+      "keep_obs_open": false,
+      "fill_with_synthetic": true,
+      "synthetic_format": "1080p30"
+    }
+  ],
+  "ai": {
+    "models": {
+      "yolo_pose": {
+        "enabled": true,
+        "path": "../models/exp-3.onnx",
+        "device": "tensorrt",
+        "warmup_iterations": 5,
+        "instances": 1
+      },
+      "facemesh": {
+        "enabled": true,
+        "path": "../models/face_landmark (1).onnx",
+        "device": "tensorrt",
+        "warmup_iterations": 5,
+        "instances": 1
+      },
+      "reid": {
+        "enabled": true,
+        "path": "../models/resnet50_market1501_aicity156.onnx",
+        "device": "tensorrt",
+        "warmup_iterations": 5,
+        "instances": 1
+      }
+    },
+    "target_fps_per_stream": 15,
+    "autoscale": {
+      "enabled": true,
+      "max_instances": 16,
+      "settle_seconds": 8,
+      "tolerance_percent": 2,
+      "min_gain_percent": 5
+    },
+    "worker_mode": "shared"
+  },
+  "telemetry": {
+    "sample_hz": 1
+  },
+  "targets": {
+    "stream_fps_min": 29,
+    "cpu_percent_max": 90,
+    "gpu_percent_max": 95,
+    "vram_percent_max": 90,
+    "ram_percent_max": 90,
+    "temperature_c_max": 90,
+    "dropped_frame_percent_max": 1,
+    "process_rss_growth_mb_max": 256,
+    "disk_free_gb_min": 20
+  },
+  "image_capture": {
+    "enabled": true,
+    "snapshot_polling_rate": 200
+  },
+  "image_persistence": {
+    "enabled": true,
+    "directory": "./",
+    "width": 1920,
+    "height": 1080,
+    "format": "jpeg",
+    "quality": 90,
+    "fsync": true,
+    "worker_mode": "shared"
+  },
+  "encode_test": {
+    "enabled": true,
+    "resolution": "4k30",
+    "stream_count": 4,
+    "worker_mode": "shared"
+  }
+}

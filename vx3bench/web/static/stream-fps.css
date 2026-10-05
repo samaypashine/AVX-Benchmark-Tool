@@ -1,0 +1,4 @@
+.fps-row{margin:12px 0}.fps-label{display:flex;justify-content:space-between;gap:10px}.fps-label strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fps-label span{color:#65d6ff;font:700 13px Consolas}.fps-track{height:15px;background:#14283b;border:1px solid #35516b;border-radius:99px;position:relative;overflow:visible;margin:6px 0}.fps-fill{height:100%;border-radius:99px;transition:width .5s ease}.fps-track i{position:absolute;top:-4px;bottom:-4px;width:2px;background:#edf5ff;opacity:.8}.fps-row small{color:#91a7bd}.fps-bars{display:grid;gap:3px}
+.stage-row{margin:8px 0 0 10px;padding:6px 0 6px 10px;border-left:2px solid #35516b}
+.stage-row .stage-name{color:#9ab}
+.stage-row .fps-track{height:10px}

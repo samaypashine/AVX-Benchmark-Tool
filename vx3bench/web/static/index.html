@@ -1,0 +1,84 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/style.css>
+<link rel=stylesheet href=/stream-fps.css>
+<main>
+    <header>
+        <div><b>NDI STREAM QUALIFICATION</b>
+            <h1>VX3 Benchmark</h1>
+        </div>
+        <div class=top>
+            <div class=timer><span>Elapsed</span><strong id=elapsed>00:00:00</strong></div><span
+                id=state>idle</span><button id=start>Start</button><button id=stop>Stop</button>
+        </div>
+    </header>
+    <div class=layout>
+        <section>
+            <div class=panel>
+                <div class=config-row>
+                    <select id=config></select>
+                    <button type=button id=newConfig>+ New</button>
+                </div>
+                <p id=desc></p>
+                <p class="muted">Editing locks automatically while a session is running.</p>
+            </div>
+            <div class=panel><button id=formTab>Parametric View</button><button id=jsonTab>JSON Editor</button>
+                <div id=form></div>
+                <textarea id=editor hidden></textarea>
+                <footer><span id=valid></span><button id=discard>Discard</button><button id=save>Validate &
+                        Save</button></footer>
+            </div>
+        </section>
+        <aside>
+            <div class=panel>
+                <h2>Session Info</h2>
+                <div id=session class=info></div>
+            </div>
+            <div class=panel>
+                <h2>System Information</h2>
+                <p class="muted">Detected hardware on this benchmark host.</p>
+                <div id=sysinfo></div>
+            </div>
+            <section class="panel">
+                <div class="head">
+                    <div>
+                    <h2>Live Stream FPS</h2>
+                    <p class="muted">
+                        Main bar: raw receive rate.
+                    </p>
+                    </div>
+                </div>
+
+                <div id="streamFps">
+                    <p class="muted">
+                    Waiting for stream frames...
+                    </p>
+                </div>
+            </section>
+            <div class=panel>
+                <h2>Live AI Models & Processes</h2>
+                <div id=aiModels class=cards></div>
+                <div id=processCharts class=charts></div>
+            </div>
+            <div class=panel>
+                <h2>Live Encode Test &amp; Image Persistence</h2>
+                <div id=auxWorkloads class=cards></div>
+            </div>
+            <div class=panel>
+                <h2>Live Telemetry</h2>
+                <p class="muted">"CPU (this tool)" is only this benchmark's own processes -- compare it to "CPU (system-wide)" to see whether load is genuinely this workload or something else (e.g. Remote Desktop's own screen capture/encoding). Running over RDP? Disconnect (not close/log off) after starting a session -- it keeps running in the background without RDP's overhead.</p>
+                <div id=kpis class=kpis></div>
+                <div id=charts class=charts></div>
+            </div>
+            <div class=panel>
+                <h2>Live Log <small id=count></small></h2>
+                <pre id=log></pre>
+            </div>
+        </aside>
+    </div>
+    <p id=error></p>
+
+    <script src=/stream-fps.js></script>
+    <script src=/app.js></script>
+</main>
